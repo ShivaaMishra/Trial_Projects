@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HideShow</title>
+    <style>
+        div{
+            background-color: yellow;
+            height: 120px;
+            width: 135px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="button" id="hide" value="CLICK" onclick="Hide()">
+    <input type="button" id="show" value="SHOW">
+    <div id="mydiv">
+    </div>
+</body>
+
+<script>
+
+    document.getElementById("hide").onclick = abc;
+    document.getElementById("show").onclick = xyz;
+
+    function abc(){
+       document.getElementById("mydiv").style.display = "none";
+    }
+    function xyz(){
+        document.getElementById("mydiv").style.display = "block";
+    }
+
+
+// document.getElementById("hide").addEventListener("click", abc);
+// let xyz = document.getElementById("mydiv");
+
+// function abc(){
+//     if(xyz.style.display == "none"){
+//         xyz.style.display = "block";
+//     }else{
+//         xyz.style.display = "none";
+//     }
+// }
+    
+   
+</script>
+</html>

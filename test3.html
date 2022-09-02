@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <style>
+        body{
+            background-color: rgba(27, 31, 34, 0.85);
+        }
+
+        h1{
+            text-align: center;
+            color: white;
+        }
+
+        .maindiv{
+            width: 70%;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-image: url(img/hori1.jpg);
+            transform: translate(-50%, -50%);
+            background-size: 100% 100%;
+            box-shadow: 2px 3px 10px white;
+            animation: slider 9s infinite linear;
+        }
+
+        @keyframes slider{
+            0%{background-image: url(img/hori1.jpg); }
+            35%{background-image: url(img/hori2.jpg); }
+            70%{background-image: url(img/hori1.jpg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS SLIDER ANIMATION</h1>
+    <div class="maindiv">
+
+    </div>
+</body>
+</html>
