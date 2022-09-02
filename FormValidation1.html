@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormValidation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container{
+            background-color: #fff;
+            border-radius: 5px;
+            width: 400px;
+            max-width: 100%;
+        }
+
+        h2{
+            color: #14aac1;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            margin: 0;
+            text-align: center;
+            text-decoration: underline rgb(20, 153, 214);
+        }
+
+        .form{
+            padding: 30px 40px;
+        }
+
+        .form-control{
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .form-control input{
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .form-control.success input{
+            border-color: #23b15e;
+        }
+
+        .form-control.error input{
+            border-color: #e33d2b;
+        }
+
+        .form-control i{
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            visibility: hidden;
+        }
+
+        .form-control.success i.fa-check-circle{
+            color: #2ecc71;
+            visibility: visible;
+        }
+
+        .form-control.error i.fa-exclamation-circle{
+            color: #e33d2b;
+            visibility: visible;
+
+        }
+
+        .form-control small{
+            visibility: hidden;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .form-control.error small{
+            color: #e33d2b;
+            visibility: visible;
+        }
+
+        .form button{
+            background-color: #0ea2dc;
+            border: 2px solid #0ea2dc;
+            color: #fff;
+            display: block;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* body{
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #form-container{
+            background-color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        h2{
+            margin: 0px 0px 10px 0px;
+        }
+
+        input{
+            width: 200px;
+            margin: 10px 0px;
+            padding: 10px;
+        }
+
+        input[type="submit"]{
+            width: 220px;
+            background-color: #3498db;
+            border: 0px;
+            color: white;
+        }
+
+        .error{
+            color: red;
+            margin: 0;
+            text-align: left;
+        } */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form id="form" class="form">
+            <div class="form-control">
+            <input type="text" id="username" placeholder="Username">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error</small>
+            </div>
+
+            <div class="form-control">
+            <input type="password" id="password" placeholder="Password">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error</small>
+            </div>
+
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <!-- <div id="form-container">
+        <h2>Login</h2>
+        <form action="" onsubmit="return validateForm()">
+            <input type="text" placeholder="Username" id="username"><br>
+            <p id="userError" class="error"></p>
+            <input type="password" placeholder="Password" id="password"><br>
+            <p id="passError" class="error"></p>
+            <input type="submit" value="submit">
+        </form>
+    </div> -->
+
+    <script>
+
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            checkInputs();
+        });
+
+        function checkInputs(){
+            const usernameVal = username.value.trim();
+            const passwordVal = password.value.trim();
+
+
+            if(usernameVal === ''){
+                setErrorFor(username, 'Username is empty');
+            } else{
+                setSuccessFor(username);
+            }
+
+            if(passwordVal === ''){
+                setErrorFor(password, 'Password is empty');
+            } else{
+                setSuccessFor(password);
+            }
+        }
+
+    
+
+        function setErrorFor(input, message){
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+            small.innerText = message;
+            formControl.className = 'form-control error'
+        }
+
+        function setSuccessFor(input){
+            const formControl = input.parentElement;
+            formControl.className = 'form-control success'
+        }
+
+        // let username = document.getElementById("username");
+        // let password = document.getElementById("password");
+        // let flag = 1;
+
+        // function validateForm(){
+        //     if(username.value == ""){
+        //         document.getElementById("userError").innerHTML = "Username is empty";
+        //         flag = 0;
+        //     } else if(username.value.length < 5){
+        //         document.getElementById("userError").innerHTML = "Username require min 5 character";
+        //         flag = 0;
+        //     }else{
+        //         document.getElementById("userError").innerHTML = "";
+        //         flag = 1;
+        //     }
+
+        //     if(password.value == ""){
+        //         document.getElementById("passError").innerHTML = "Password cant be empty";
+        //         flag = 0;
+        //     } else{
+        //         document.getElementById("passError").innerHTML = "";
+        //         flag = 1;
+        //     }
+
+        //     if(flag){
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+    </script>
+
+</body>
+</html>
